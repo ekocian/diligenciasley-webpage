@@ -6,7 +6,7 @@ const el = {
   regPassword: document.getElementById("regPassword"),
   btnRegister: document.getElementById("btnRegister"),
 
-  email: document.getElementById("email"),
+  username: document.getElementById("username"),
   password: document.getElementById("password"),
   btnLogin: document.getElementById("btnLogin"),
 
