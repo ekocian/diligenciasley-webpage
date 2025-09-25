@@ -71,10 +71,10 @@ async function register() {
 
 // ---- Login ----
 async function login() {
-  const email = el.email.value.trim();
+  const username = el.username.value.trim();
   const password = el.password.value;
-  if (!email || !password) {
-    setStatus("completa email y contraseña", false);
+  if (!username || !password) {
+    setStatus("completa username y contraseña", false);
     return;
   }
   setStatus("iniciando...", true);
@@ -85,7 +85,7 @@ async function login() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ username, password })
     });
 
     const data = await res.json().catch(() => ({}));
