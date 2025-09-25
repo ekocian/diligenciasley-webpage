@@ -1,4 +1,4 @@
-const API_URL = "https://tu-api.onrender.com"; // la URL que Render te da
+const API_URL = "https://diligenciasley-backend.onrender.com"; // la URL que Render te da
 
 async function loadUsers() {
   const res = await fetch(`${API_URL}/users`);
