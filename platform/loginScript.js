@@ -95,6 +95,7 @@ async function login() {
     } else {
       setStatus("logueado (cookie recibida)", true);
       clearOutput();
+      window.location.href = "perfil.html";
     }
   } catch (err) {
     setStatus("error de red: " + err.message, false);
