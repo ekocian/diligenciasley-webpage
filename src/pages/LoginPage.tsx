@@ -99,11 +99,18 @@ const LoginPage = () => {
         <h1 className="auth-title">Gestión de sesión</h1>
 
         {message && (
-          <Message
-            severity={messageType}
-            text={message}
-            className="w-full mb-3"
-          />
+          <div className="message-container">
+            <Message
+              severity={messageType}
+              text={message}
+              className="w-full"
+              style={{ 
+                padding: '1rem 1.25rem',
+                marginBottom: '1.5rem',
+                borderRadius: '10px'
+              }}
+            />
+          </div>
         )}
 
         <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
@@ -219,7 +226,7 @@ const LoginPage = () => {
         </div>
 
         <div className="text-xs text-gray-500 text-center">
-          Nota: este ejemplo usa <code>credentials: "include"</code> para enviar cookies HttpOnly al backend.
+          Nota: Alguna información adicional.
         </div>
       </Card>
     </div>

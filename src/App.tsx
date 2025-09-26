@@ -6,7 +6,7 @@ import VerifyPage from './pages/VerifyPage';
 
 function App() {
   return (
-    <Router basename="/diligenciasley-webpage">
+    <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />

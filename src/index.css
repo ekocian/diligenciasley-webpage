@@ -154,3 +154,21 @@ body {
 .profile-info strong {
   color: #1f2937;
 }
+
+/* Mejoras sutiles para el componente Message */
+.message-container .p-message .p-message-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.message-container .p-message .p-message-icon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.message-container .p-message .p-message-text {
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
