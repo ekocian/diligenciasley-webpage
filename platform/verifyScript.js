@@ -9,7 +9,7 @@ async function verifyAccount() {
     statusEl.innerHTML = `
       <p class="error">No se pudo verificar la cuenta</p>
       <p>Código de verificación inválido.</p>
-      <a href="/">Ir al inicio</a>
+      <a href="/platform">Ir al inicio</a>
     `;
     return;
   }

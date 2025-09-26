@@ -31,7 +31,7 @@ btnLogout.addEventListener("click", async () => {
     method: "POST",
     credentials: "include"
     });
-    window.location.href = "/";
+    window.location.href = "/platform"; // redirigir al login
 });
 
 fetchPerfil();
