@@ -26,14 +26,14 @@ async function verifyAccount() {
       statusEl.innerHTML = `
         <p class="success">Cuenta Verificada</p>
         <p>Tu cuenta ha sido verificada exitosamente.</p>
-        <a href="/">Ir al inicio para iniciar sesión</a>
+        <a href="/platform">Ir al inicio para iniciar sesión</a>
       `;
     } else {
       const error = await res.json();
       statusEl.innerHTML = `
         <p class="error">No se pudo verificar la cuenta</p>
         <p>${error.error || "Error desconocido"}</p>
-        <a href="/">Ir al inicio</a>
+        <a href="/platform">Ir al inicio</a>
       `;
     }
   } catch (err) {
@@ -41,7 +41,7 @@ async function verifyAccount() {
     statusEl.innerHTML = `
       <p class="error">No se pudo verificar la cuenta</p>
       <p>Error de conexión: ${errorMessage}</p>
-      <a href="/">Ir al inicio</a>
+      <a href="/platform">Ir al inicio</a>
     `;
   }
 }
