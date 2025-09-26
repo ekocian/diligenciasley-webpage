@@ -19,7 +19,7 @@ async function verifyAccount() {
     if (res.ok) {
       statusEl.textContent = "Cuenta verificada ✅ Redirigiendo...";
       setTimeout(() => {
-        window.location.href = "/perfil.html";
+        window.location.href = "/";
       }, 1500);
     } else {
       const error = await res.json();
