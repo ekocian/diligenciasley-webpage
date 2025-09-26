@@ -3,8 +3,14 @@ async function verifyAccount() {
   const code = params.get("code");
   const statusEl = document.getElementById("status");
 
+  if (!statusEl) return;
+
   if (!code) {
-    statusEl.textContent = "Código de verificación inválido.";
+    statusEl.innerHTML = `
+      <p class="error">No se pudo verificar la cuenta</p>
+      <p>Código de verificación inválido.</p>
+      <a href="/">Ir al inicio</a>
+    `;
     return;
   }
 
@@ -17,16 +23,26 @@ async function verifyAccount() {
     });
 
     if (res.ok) {
-      statusEl.textContent = "Cuenta verificada ✅ Redirigiendo...";
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1500);
+      statusEl.innerHTML = `
+        <p class="success">Cuenta Verificada</p>
+        <p>Tu cuenta ha sido verificada exitosamente.</p>
+        <a href="/">Ir al inicio para iniciar sesión</a>
+      `;
     } else {
       const error = await res.json();
-      statusEl.textContent = "Error: " + (error.error || "No se pudo verificar la cuenta.");
+      statusEl.innerHTML = `
+        <p class="error">No se pudo verificar la cuenta</p>
+        <p>${error.error || "Error desconocido"}</p>
+        <a href="/">Ir al inicio</a>
+      `;
     }
   } catch (err) {
-    statusEl.textContent = "Error de conexión: " + err.message;
+    const errorMessage = err instanceof Error ? err.message : "Error desconocido";
+    statusEl.innerHTML = `
+      <p class="error">No se pudo verificar la cuenta</p>
+      <p>Error de conexión: ${errorMessage}</p>
+      <a href="/">Ir al inicio</a>
+    `;
   }
 }
 
