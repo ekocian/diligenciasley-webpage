@@ -14,6 +14,31 @@ body {
   min-height: 100vh;
 }
 
+/* Homepage specific styles */
+.bg-gray-50 {
+  background-color: #f9fafb;
+}
+
+.text-primary {
+  color: var(--primary-color, #3b82f6);
+}
+
+.text-gray-800 {
+  color: #1f2937;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.text-gray-400 {
+  color: #9ca3af;
+}
+
 .main-container {
   display: flex;
   align-items: center;
@@ -22,13 +47,27 @@ body {
   padding: 20px;
 }
 
+/* Variables CSS personalizadas para el tema de PrimeReact */
+:root {
+  --primary-color: #3b82f6;
+  --primary-color-text: #ffffff;
+  --surface-0: #ffffff;
+  --surface-50: #f9fafb;
+  --surface-100: #f3f4f6;
+  --surface-200: #e5e7eb;
+  --surface-300: #d1d5db;
+  --text-color: #374151;
+  --text-color-secondary: #6b7280;
+  --border-radius: 8px;
+}
+
 .auth-card {
   background: white;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(18, 24, 40, 0.08);
-  padding: 2rem;
+  padding: 2.5rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
 }
 
 .auth-title {
@@ -40,7 +79,7 @@ body {
 }
 
 .form-field {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-field label {
@@ -49,6 +88,49 @@ body {
   color: #374151;
   font-weight: 500;
   font-size: 0.875rem;
+}
+
+/* Ajustes mínimos sin !important */
+.p-inputtext {
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+}
+
+.p-inputtext-lg {
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+}
+
+.p-password .p-inputtext {
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+}
+
+.p-button {
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+}
+
+.p-button-lg {
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+}
+
+/* Estilos para TabView */
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 8px 8px 0 0;
+}
+
+.p-tabview .p-tabview-panels {
+  padding: 1.5rem 0;
+}
+
+.p-tabview .p-tabview-nav {
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .success-message {

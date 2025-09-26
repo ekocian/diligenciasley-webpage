@@ -125,6 +125,5 @@ Todas las requests incluyen `credentials: 'include'` para el manejo de cookies H
 
 ## 📝 Notas
 
-- Los archivos HTML/JS originales están en la carpeta `platform/` como respaldo
 - El proyecto está configurado para TypeScript estricto
 - Se utiliza ESLint para mantener calidad de código

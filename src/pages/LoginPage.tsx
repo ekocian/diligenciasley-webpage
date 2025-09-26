@@ -4,8 +4,8 @@ import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
-import { Divider } from 'primereact/divider';
 import { Message } from 'primereact/message';
+import { TabView, TabPanel } from 'primereact/tabview';
 import { authService } from '../services/api';
 
 const LoginPage = () => {
@@ -24,6 +24,7 @@ const LoginPage = () => {
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState<'success' | 'error' | 'info'>('info');
   const [loading, setLoading] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(1); // Empezar en Login (index 1)
 
   const showMessage = (text: string, type: 'success' | 'error' | 'info' = 'info') => {
     setMessage(text);
@@ -95,7 +96,7 @@ const LoginPage = () => {
   return (
     <div className="main-container">
       <Card className="auth-card">
-        <h1 className="auth-title">Gestión de sesión (cookies HttpOnly)</h1>
+        <h1 className="auth-title">Gestión de sesión</h1>
 
         {message && (
           <Message
@@ -105,101 +106,102 @@ const LoginPage = () => {
           />
         )}
 
-        {/* Formulario de Registro */}
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold mb-3">Registro</h2>
-          
-          <div className="form-field">
-            <label htmlFor="regUsername">Username</label>
-            <InputText
-              id="regUsername"
-              value={regUsername}
-              onChange={(e) => setRegUsername(e.target.value)}
-              placeholder="nombre de usuario"
-              className="w-full"
-              disabled={loading}
+        <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
+          {/* Tab de Registro */}
+          <TabPanel header="Registro">
+            <div className="form-field">
+              <label htmlFor="regUsername">Username</label>
+              <InputText
+                id="regUsername"
+                value={regUsername}
+                onChange={(e) => setRegUsername(e.target.value)}
+                placeholder="nombre de usuario"
+                className="w-full p-inputtext-lg"
+                disabled={loading}
+                size="large"
+              />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="regEmail">Email</label>
+              <InputText
+                id="regEmail"
+                type="email"
+                value={regEmail}
+                onChange={(e) => setRegEmail(e.target.value)}
+                placeholder="usuario@ejemplo.com"
+                className="w-full p-inputtext-lg"
+                disabled={loading}
+                size="large"
+              />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="regPassword">Contraseña</label>
+              <Password
+                id="regPassword"
+                value={regPassword}
+                onChange={(e) => setRegPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full"
+                inputClassName="w-full p-inputtext-lg"
+                disabled={loading}
+                feedback={false}
+                toggleMask
+              />
+            </div>
+
+            <Button
+              label="Registrar"
+              onClick={handleRegister}
+              className="w-full p-button-lg"
+              loading={loading}
+              size="large"
             />
-          </div>
+          </TabPanel>
 
-          <div className="form-field">
-            <label htmlFor="regEmail">Email</label>
-            <InputText
-              id="regEmail"
-              type="email"
-              value={regEmail}
-              onChange={(e) => setRegEmail(e.target.value)}
-              placeholder="usuario@ejemplo.com"
-              className="w-full"
-              disabled={loading}
+          {/* Tab de Login */}
+          <TabPanel header="Login">
+            <div className="form-field">
+              <label htmlFor="username">Username</label>
+              <InputText
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="nombre de usuario"
+                className="w-full p-inputtext-lg"
+                disabled={loading}
+                size="large"
+              />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="password">Contraseña</label>
+              <Password
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full"
+                inputClassName="w-full p-inputtext-lg"
+                disabled={loading}
+                feedback={false}
+                toggleMask
+              />
+            </div>
+
+            <Button
+              label="Iniciar sesión"
+              onClick={handleLogin}
+              className="w-full p-button-lg"
+              loading={loading}
+              size="large"
             />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="regPassword">Contraseña</label>
-            <Password
-              id="regPassword"
-              value={regPassword}
-              onChange={(e) => setRegPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full"
-              inputClassName="w-full"
-              disabled={loading}
-              feedback={false}
-              toggleMask
-            />
-          </div>
-
-          <Button
-            label="Registrar"
-            onClick={handleRegister}
-            className="w-full"
-            loading={loading}
-          />
-        </div>
-
-        <Divider />
-
-        {/* Formulario de Login */}
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold mb-3">Login</h2>
-          
-          <div className="form-field">
-            <label htmlFor="username">Username</label>
-            <InputText
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="nombre de usuario"
-              className="w-full"
-              disabled={loading}
-            />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="password">Contraseña</label>
-            <Password
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full"
-              inputClassName="w-full"
-              disabled={loading}
-              feedback={false}
-              toggleMask
-            />
-          </div>
-
-          <Button
-            label="Iniciar sesión"
-            onClick={handleLogin}
-            className="w-full"
-            loading={loading}
-          />
-        </div>
+          </TabPanel>
+        </TabView>
 
         {/* Botones de acción */}
-        <div className="flex gap-2 mb-3">
+        <div className="flex gap-2 mb-3 mt-4">
           <Button
             label="Obtener perfil"
             onClick={checkProfile}
