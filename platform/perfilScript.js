@@ -12,7 +12,7 @@ async function fetchPerfil() {
 
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-        perfilDiv.innerHTML = "<p>No autorizado. Volvé a <a href='login.html'>login</a></p>";
+        perfilDiv.innerHTML = "<p>No autorizado. Volvé a <a href='/'>login</a></p>";
     } else {
         perfilDiv.innerHTML = `
         <p><b>Username:</b> ${data.username}</p>
@@ -31,7 +31,7 @@ btnLogout.addEventListener("click", async () => {
     method: "POST",
     credentials: "include"
     });
-    window.location.href = "index.html";
+    window.location.href = "/";
 });
 
 fetchPerfil();
