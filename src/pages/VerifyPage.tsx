@@ -27,10 +27,12 @@ const VerifyPage = () => {
     }
 
     try {
+      console.log('Sending verification request with code:', code);
       await authService.verify(code);
       showMessage('Tu cuenta ha sido verificada exitosamente.', 'success');
       setIsVerified(true);
     } catch (error) {
+      console.error('Verification error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
       showMessage(`Error: ${errorMessage}`, 'error');
       setIsVerified(false);

@@ -2,6 +2,25 @@
 
 Frontend desarrollado en React + TypeScript + PrimeReact para la gestión de cuentas de usuario.
 
+## 🏛️ Arquitectura de la Solución
+
+### Frontend (Este Repositorio)
+- **Hosting**: GitHub Pages
+- **Dominio**: `diligenciasley.com.ar` (dominio personalizado de NIC Argentina)
+- **DNS Provider**: Cloudflare
+- **Tecnología**: React + TypeScript + Vite + PrimeReact
+
+### Backend
+- **Hosting**: Render.com
+- **URL**: `https://diligenciasley-backend.onrender.com`
+- **Base de Datos**: PostgreSQL en Render
+- **Repositorio**: `diligenciasley-backend`
+
+### Configuración de DNS
+- Dominio registrado en NIC Argentina (`.com.ar`)
+- DNS gestionado por Cloudflare para mejor rendimiento y seguridad
+- Configuración CNAME apuntando a GitHub Pages
+
 ## 🚀 Características
 
 - **React 18** con TypeScript
@@ -84,6 +103,45 @@ import 'primereact/resources/themes/tu-tema/theme.css';
 
 ## 🚀 Deploy
 
+### Arquitectura de Deployment
+
+Este proyecto utiliza una arquitectura moderna distribuida:
+
+#### Frontend (GitHub Pages)
+```bash
+# Deploy automático a GitHub Pages
+npm run deploy
+```
+
+**Configuración:**
+1. **GitHub Pages**: Hosting del frontend
+2. **Dominio personalizado**: `diligenciasley.com.ar` (NIC Argentina)
+3. **DNS Provider**: Cloudflare para gestión de DNS y CDN
+4. **SSL**: Certificado automático via GitHub Pages + Cloudflare
+
+#### Backend (Render)
+- **URL**: `https://diligenciasley-backend.onrender.com`
+- **Base de Datos**: PostgreSQL administrada por Render
+- **Deploy**: Automático desde repositorio Git
+
+### Configuración del Dominio Personalizado
+
+1. **Registro en NIC Argentina**: Dominio `.com.ar` registrado
+2. **Cloudflare DNS**: 
+   - CNAME record: `diligenciasley.com.ar` → `[usuario].github.io`
+   - Configuración SSL/TLS: Full (strict)
+   - Page Rules para optimización
+3. **GitHub Pages**: 
+   - Custom domain configurado en settings
+   - HTTPS enforced habilitado
+
+### SPA (Single Page Application) Handling
+
+Para manejar el routing client-side en GitHub Pages:
+- `public/404.html`: Redirige todas las rutas 404 al `index.html`
+- Script en `index.html`: Maneja la restauración de URLs correctas
+- Configuración específica para evitar errores 404 en rutas como `/platform/verify`
+
 ### Build para producción
 ```bash
 npm run build
@@ -108,14 +166,27 @@ Los archivos se generarán en la carpeta `dist/` y están listos para ser servid
 
 ## 🔗 API Integration
 
-El frontend se conecta al backend en:
+### Backend en Render
+El frontend se conecta al backend desplegado en Render.com:
+- **URL Base**: `https://diligenciasley-backend.onrender.com`
+- **Base de Datos**: PostgreSQL administrada por Render
+
+### Endpoints disponibles:
 - `POST /register` - Registro de usuario
-- `POST /login` - Inicio de sesión
+- `POST /login` - Inicio de sesión  
 - `POST /logout` - Cerrar sesión
 - `GET /perfil` - Obtener perfil
 - `POST /verify` - Verificar cuenta
 
-Todas las requests incluyen `credentials: 'include'` para el manejo de cookies HttpOnly.
+### Configuración CORS
+El backend está configurado para aceptar requests desde:
+- `https://diligenciasley.com.ar` (producción)
+- `http://localhost:5173` (desarrollo local)
+
+### Autenticación
+- Utiliza cookies HttpOnly para seguridad
+- Todas las requests incluyen `credentials: 'include'`
+- Sesiones persistentes con expiración configurable
 
 ## 🎨 Estilos
 
@@ -127,3 +198,51 @@ Todas las requests incluyen `credentials: 'include'` para el manejo de cookies H
 
 - El proyecto está configurado para TypeScript estricto
 - Se utiliza ESLint para mantener calidad de código
+
+## 🔧 Configuración de Infraestructura
+
+### Cloudflare (DNS Provider)
+```
+Tipo    Nombre                    Contenido
+CNAME   diligenciasley.com.ar    [usuario].github.io
+CNAME   www                      diligenciasley.com.ar
+```
+
+### GitHub Pages
+- **Branch**: `gh-pages` (generado automáticamente por `gh-pages` package)
+- **Custom Domain**: `diligenciasley.com.ar`
+- **HTTPS**: Forzado (via GitHub + Cloudflare)
+
+### Render (Backend)
+- **Runtime**: Node.js
+- **Database**: PostgreSQL 15
+- **Environment**: Production
+- **Auto-deploy**: Habilitado desde Git
+
+## 📊 Performance y Monitoreo
+
+### Frontend (GitHub Pages + Cloudflare)
+- **CDN Global**: Cloudflare edge locations
+- **Caché**: Assets estáticos optimizados
+- **Compresión**: Gzip/Brotli automático
+- **SSL**: Certificado universal de Cloudflare
+
+### Backend (Render)
+- **Escalado**: Automático basado en demanda
+- **Uptime**: 99.9% SLA
+- **Backup DB**: Automático diario
+- **SSL**: Certificado gratuito incluido
+
+## 🔐 Seguridad
+
+### Frontend
+- HTTPS forzado en toda la aplicación
+- Headers de seguridad via Cloudflare
+- CSP (Content Security Policy) configurado
+- SameSite cookies para CSRF protection
+
+### Backend  
+- Cookies HttpOnly para autenticación
+- CORS configurado específicamente
+- Rate limiting implementado
+- Validación de input en todos los endpoints
