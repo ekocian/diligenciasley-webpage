@@ -33,31 +33,31 @@ const apiCall = async (endpoint: string, options: RequestInit = {}): Promise<any
 
 export const authService = {
   register: async (username: string, email: string, password: string): Promise<ApiResponse> => {
-    return apiCall('/register', {
+    return apiCall('/users/register', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),
     });
   },
 
   login: async (username: string, password: string): Promise<ApiResponse> => {
-    return apiCall('/login', {
+    return apiCall('/users/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
     });
   },
 
   logout: async (): Promise<ApiResponse> => {
-    return apiCall('/logout', {
+    return apiCall('/users/logout', {
       method: 'POST',
     });
   },
 
   getProfile: async (): Promise<User> => {
-    return apiCall('/perfil');
+    return apiCall('/users/perfil');
   },
 
   verify: async (code: string): Promise<ApiResponse> => {
-    return apiCall('/verify', {
+    return apiCall('/users/verify', {
       method: 'POST',
       body: JSON.stringify({ code }),
     });
