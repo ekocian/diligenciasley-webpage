@@ -214,7 +214,7 @@ CNAME   www                      diligenciasley.com.ar
 - **HTTPS**: Forzado (via GitHub + Cloudflare)
 
 ### Render (Backend)
-- **Runtime**: Node.js
+- **Runtime**: Node + Typescript
 - **Database**: PostgreSQL 15
 - **Environment**: Production
 - **Auto-deploy**: Habilitado desde Git

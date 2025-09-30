@@ -172,3 +172,54 @@ body {
   font-size: 0.9rem;
   line-height: 1.4;
 }
+
+/* Estilos para tarjetas de tareas */
+.task-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(18, 24, 40, 0.04);
+  transition: all 0.2s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 16px rgba(18, 24, 40, 0.08);
+  transform: translateY(-1px);
+}
+
+.task-content .task-description h4 {
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.task-content .task-description p {
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.task-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Mejoras para espaciado de botones */
+.flex.flex-column.gap-3 > .p-button {
+  margin-bottom: 0;
+}
+
+/* Estado badges personalizados */
+.bg-yellow-100 { background-color: #fef3c7; }
+.text-yellow-800 { color: #92400e; }
+.bg-blue-100 { background-color: #dbeafe; }
+.text-blue-800 { color: #1e40af; }
+.bg-green-100 { background-color: #dcfce7; }
+.text-green-800 { color: #166534; }
+.bg-red-100 { background-color: #fee2e2; }
+.text-red-800 { color: #991b1b; }
+.bg-purple-100 { background-color: #f3e8ff; }
+.text-purple-800 { color: #6b21a8; }
+.bg-gray-100 { background-color: #f3f4f6; }
+.text-gray-800 { color: #1f2937; }

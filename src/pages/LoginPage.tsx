@@ -6,7 +6,7 @@ import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { Message } from 'primereact/message';
 import { TabView, TabPanel } from 'primereact/tabview';
-import { authService } from '../services/api';
+import { authService, userService } from '../services/api';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ const LoginPage = () => {
   const checkProfile = async () => {
     setLoading(true);
     try {
-      const user = await authService.getProfile();
+      const user = await userService.getProfile();
       showMessage(`Perfil obtenido: ${user.username} - ${user.email}`, 'success');
     } catch (error) {
       showMessage(error instanceof Error ? error.message : 'Error al obtener perfil', 'error');

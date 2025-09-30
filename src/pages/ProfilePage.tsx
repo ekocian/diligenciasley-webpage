@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { Message } from 'primereact/message';
-import { authService, User } from '../services/api';
+import { authService, User, userService } from '../services/api';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const ProfilePage = () => {
 
   const loadProfile = async () => {
     try {
-      const userData = await authService.getProfile();
+      const userData = await userService.getProfile();
       setUser(userData);
       setMessage('');
     } catch (error) {
@@ -86,13 +86,24 @@ const ProfilePage = () => {
           </div>
         )}
 
-        <Button
-          label="Cerrar sesión"
-          onClick={handleLogout}
-          className="w-full"
-          loading={loading}
-          severity="secondary"
-        />
+        <div className="flex flex-column gap-3 mt-4">
+          <Button
+            label="Ver mis tareas"
+            onClick={() => navigate('/platform/tareas')}
+            className="w-full"
+            icon="pi pi-list"
+            disabled={loading}
+            severity="info"
+          />
+          <Button
+            label="Cerrar sesión"
+            onClick={handleLogout}
+            icon="pi pi-sign-out"
+            className="w-full"
+            loading={loading}
+            severity="secondary"
+          />
+        </div>
       </Card>
     </div>
   );
