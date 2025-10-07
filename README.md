@@ -1,6 +1,6 @@
 # Diligencias Ley - Frontend
 
-Frontend desarrollado en React + TypeScript + PrimeReact para la gestión de cuentas de usuario.
+Frontend desarrollado en React + TypeScript para DiligenciasLey, una plataforma completa de servicios profesionales que incluye página corporativa, gestión de usuarios y sistema de tareas.
 
 ## 🏛️ Arquitectura de la Solución
 
@@ -32,9 +32,19 @@ Frontend desarrollado en React + TypeScript + PrimeReact para la gestión de cue
 
 ## 📱 Páginas
 
-- **Login/Register** (`/platform`) - Formularios de registro e inicio de sesión
+### Páginas Públicas
+- **Homepage** (`/`) - Página principal con información de servicios y contacto
+- **Consulta** (`/consulta`) - Consulta de trámites (en construcción)
+- **Cotizar** (`/cotizar`) - Cotización de trámites (en construcción)
+
+### Plataforma de Usuario
+- **Login/Register** (`/platform`, `/registrarse`) - Formularios de registro e inicio de sesión
 - **Perfil** (`/platform/perfil`) - Información del usuario autenticado
+- **Tareas** (`/platform/tareas`) - Gestión de tareas y trámites del usuario
 - **Verificación** (`/platform/verify`) - Verificación de cuenta por email
+
+### Páginas Especiales
+- **En Construcción** (`/construccion`) - Página temporal para funciones en desarrollo
 
 ## 🛠️ Instalación y desarrollo
 
@@ -75,11 +85,14 @@ npm run lint
 src/
 ├── components/          # Componentes reutilizables
 ├── pages/              # Páginas principales
+│   ├── HomePage.tsx    # Página principal con servicios y contacto
 │   ├── LoginPage.tsx   # Login y registro
 │   ├── ProfilePage.tsx # Perfil de usuario
-│   └── VerifyPage.tsx  # Verificación de cuenta
+│   ├── TasksPage.tsx   # Gestión de tareas del usuario
+│   ├── VerifyPage.tsx  # Verificación de cuenta
+│   └── UnderConstructionPage.tsx # Página temporal
 ├── services/           # Servicios API
-│   └── api.ts         # Cliente API
+│   └── api.ts         # Cliente API y servicios
 ├── App.tsx            # Componente principal con rutas
 ├── main.tsx          # Punto de entrada
 └── index.css         # Estilos globales
@@ -172,11 +185,21 @@ El frontend se conecta al backend desplegado en Render.com:
 - **Base de Datos**: PostgreSQL administrada por Render
 
 ### Endpoints disponibles:
+#### Autenticación y Usuario
 - `POST /register` - Registro de usuario
 - `POST /login` - Inicio de sesión  
 - `POST /logout` - Cerrar sesión
 - `GET /perfil` - Obtener perfil
 - `POST /verify` - Verificar cuenta
+
+#### Servicios Públicos
+- `POST /send-email` - Envío de mensajes de contacto (con rate limiting)
+
+#### Gestión de Tareas (Autenticado)
+- `GET /tasks` - Obtener tareas del usuario
+- `POST /tasks` - Crear nueva tarea
+- `PUT /tasks/:id` - Actualizar tarea
+- `DELETE /tasks/:id` - Eliminar tarea
 
 ### Configuración CORS
 El backend está configurado para aceptar requests desde:
