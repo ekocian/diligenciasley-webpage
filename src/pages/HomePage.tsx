@@ -52,7 +52,7 @@ const HomePage = () => {
         } else if (error.message.includes('Error de conexión')) {
           errorMessage = 'No se pudo conectar con el servidor. Verifica tu conexión a internet e intenta nuevamente.';
         } else {
-          errorMessage = error.message;
+          errorMessage = 'Error desconocido. Por favor, intenta nuevamente.';
         }
       }
       
