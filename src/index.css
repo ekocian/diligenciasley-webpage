@@ -40,7 +40,7 @@ body {
   color: var(--dark);
   line-height: 1.6;
   min-height: 100vh;
-  padding-top: 80px; /* Compensar por el header fijo */
+  padding-top: 40px; /* Compensar por el header fijo */
 }
 
 /* Header styles */
@@ -588,7 +588,7 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
   body {
-    padding-top: 120px; /* Más espacio en móviles por el header más alto */
+    padding-top: 30px; /* Más espacio en móviles por el header más alto */
   }
   
   .main-header {
@@ -915,27 +915,43 @@ body {
 
 .main-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 10px 20px 40px 20px;
+  padding-top: 10px;
 }
 
 .auth-card {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(18, 24, 40, 0.08);
+  box-shadow: 0 6px 18px rgba(44, 82, 130, 0.15);
   padding: 2.5rem;
   width: 100%;
   max-width: 450px;
+  border: 1px solid rgba(44, 82, 130, 0.1);
+}
+
+.auth-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.auth-logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 .auth-title {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #1a202c;
+  color: var(--primary-blue);
   font-size: 1.5rem;
   font-weight: 600;
+  margin: 0;
 }
 
 .form-field {
@@ -945,7 +961,7 @@ body {
 .form-field label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #374151;
+  color: var(--primary-blue);
   font-weight: 500;
   font-size: 0.875rem;
 }
@@ -970,19 +986,53 @@ body {
   font-size: 0.95rem;
   padding: 0.75rem 1.5rem;
   font-weight: 600;
+  background: var(--primary-green);
+  border-color: var(--primary-green);
+}
+
+.p-button:hover {
+  background: #2f7c56;
+  border-color: #2f7c56;
 }
 
 .p-button-lg {
   font-size: 0.95rem;
   padding: 0.75rem 1.5rem;
   font-weight: 600;
+  background: var(--primary-green);
+  border-color: var(--primary-green);
+}
+
+.p-button-lg:hover {
+  background: #2f7c56;
+  border-color: #2f7c56;
+}
+
+/* Botones secundarios (Obtener perfil, Cerrar sesión) */
+.p-button.p-button-secondary {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: white;
+}
+
+.p-button.p-button-secondary:hover {
+  background: #1e3a52;
+  border-color: #1e3a52;
 }
 
 /* Estilos para TabView */
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   padding: 0.75rem 1.5rem;
   font-weight: 500;
-  border-radius: 8px 8px 0 0;
+  color: var(--primary-blue);
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: var(--primary-green);
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+  background-color: var(--primary-green);
 }
 
 .p-tabview .p-tabview-panels {
@@ -1083,3 +1133,29 @@ body {
 .text-purple-800 { color: #6b21a8; }
 .bg-gray-100 { background-color: #f3f4f6; }
 .text-gray-800 { color: #1f2937; }
+
+/* Responsive styles for login page */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 10px;
+    padding-top: 10px;
+  }
+  
+  .auth-card {
+    padding: 2rem;
+    margin: 0;
+  }
+  
+  .auth-logo {
+    height: 35px;
+  }
+  
+  .auth-title {
+    font-size: 1.25rem;
+  }
+  
+  .auth-header {
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+}

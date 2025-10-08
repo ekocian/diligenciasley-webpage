@@ -6,7 +6,8 @@ import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { Message } from 'primereact/message';
 import { TabView, TabPanel } from 'primereact/tabview';
-import { authService, userService } from '../services/api';
+// import { authService, userService } from '../services/api';
+import { authService } from '../services/api';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -69,17 +70,17 @@ const LoginPage = () => {
     }
   };
 
-  const checkProfile = async () => {
-    setLoading(true);
-    try {
-      const user = await userService.getProfile();
-      showMessage(`Perfil obtenido: ${user.username} - ${user.email}`, 'success');
-    } catch (error) {
-      showMessage(error instanceof Error ? error.message : 'Error al obtener perfil', 'error');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const checkProfile = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const user = await userService.getProfile();
+  //     showMessage(`Perfil obtenido: ${user.username} - ${user.email}`, 'success');
+  //   } catch (error) {
+  //     showMessage(error instanceof Error ? error.message : 'Error al obtener perfil', 'error');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleLogout = async () => {
     setLoading(true);
@@ -96,7 +97,10 @@ const LoginPage = () => {
   return (
     <div className="main-container">
       <Card className="auth-card">
-        <h1 className="auth-title">Gestión de sesión</h1>
+        <div className="auth-header">
+          <img src="/assets/preview.png" alt="DiligenciasLey Logo" className="auth-logo" />
+          <h1 className="auth-title">Gestión de sesión</h1>
+        </div>
 
         {message && (
           <div className="message-container">
@@ -208,14 +212,14 @@ const LoginPage = () => {
         </TabView>
 
         {/* Botones de acción */}
-        <div className="flex gap-2 mb-3 mt-4">
-          <Button
+        <div className="flex gap-2 mb-3">
+          {/* <Button
             label="Obtener perfil"
             onClick={checkProfile}
             className="flex-1"
             severity="secondary"
             disabled={loading}
-          />
+          /> */}
           <Button
             label="Cerrar sesión"
             onClick={handleLogout}
