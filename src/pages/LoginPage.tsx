@@ -229,8 +229,16 @@ const LoginPage = () => {
           />
         </div>
 
-        <div className="text-xs text-gray-500 text-center">
-          Nota: Alguna información adicional.
+        <div className="text-center mt-3">
+          <a 
+            href="/forgot-password" 
+            className="text-sm text-blue-600 hover:text-blue-800 underline"
+            style={{ color: 'var(--primary-color)', textDecoration: 'none' }}
+            onMouseOver={(e) => e.currentTarget.style.textDecoration = 'underline'}
+            onMouseOut={(e) => e.currentTarget.style.textDecoration = 'none'}
+          >
+            ¿Olvidaste tu contraseña?
+          </a>
         </div>
       </Card>
     </div>

@@ -11,6 +11,10 @@ export interface ApiResponse<T = any> {
   ok?: boolean;
   error?: string;
   data?: T;
+  success?: boolean;
+  message?: string;
+  valid?: boolean;
+  email?: string;
 }
 
 export interface Tasks {
@@ -92,6 +96,25 @@ export const authService = {
     return apiCall('/users/verify', {
       method: 'POST',
       body: JSON.stringify({ code }),
+    });
+  },
+
+  // 🆕 Métodos para reset de contraseña
+  requestPasswordReset: async (email: string): Promise<ApiResponse> => {
+    return apiCall('/users/request-password-reset', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    });
+  },
+
+  validateResetCode: async (code: string): Promise<ApiResponse<{ valid: boolean; email?: string }>> => {
+    return apiCall(`/users/validate-reset-code/${code}`);
+  },
+
+  resetPassword: async (code: string, newPassword: string): Promise<ApiResponse> => {
+    return apiCall('/users/reset-password', {
+      method: 'POST',
+      body: JSON.stringify({ code, newPassword }),
     });
   }
 };

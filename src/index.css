@@ -954,6 +954,29 @@ body {
   margin: 0;
 }
 
+.auth-subtitle {
+  color: var(--text-color-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0.5rem 0 1.5rem 0;
+  max-width: 100%;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.auth-info-text {
+  color: var(--text-color-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 100%;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
 .form-field {
   margin-bottom: 1.25rem;
 }
