@@ -1,10 +1,23 @@
-const API_URL = "https://diligenciasley-backend.onrender.com";
+const API_URL = (import.meta.env.MODE === "development" 
+    ? "http://localhost:3000" 
+    : "https://diligenciasley-backend.onrender.com");
+console.log("API_URL:", API_URL);
+console.log("Environment Mode:", import.meta.env.MODE);
+// Log en desarrollo para verificar la URL
+if (import.meta.env.MODE === "development") {
+  console.log("🌐 API URL:", API_URL);
+}
 
 export interface User {
   id: number;
   username: string;
   email: string;
   active: boolean;
+  role?: {
+    id: number;
+    name: string;
+    description?: string;
+  };
 }
 
 export interface ApiResponse<T = any> {

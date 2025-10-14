@@ -77,6 +77,7 @@ const ProfilePage = () => {
           <div className="profile-info mb-4">
             <p><strong>Username:</strong> {user.username}</p>
             <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Rol:</strong> {user.role?.name || 'No asignado'}</p>
             <p><strong>Estado:</strong> {user.active ? 'Activo' : 'Inactivo'}</p>
             <p><strong>ID:</strong> {user.id}</p>
           </div>
@@ -87,14 +88,57 @@ const ProfilePage = () => {
         )}
 
         <div className="flex flex-column gap-3 mt-4">
-          <Button
-            label="Ver mis tareas"
-            onClick={() => navigate('/platform/tareas')}
-            className="w-full"
-            icon="pi pi-list"
-            disabled={loading}
-            severity="info"
-          />
+          {/* Botones según el rol del usuario */}
+          {user?.role?.name === 'Admin' ? (
+            // Botones para Admin
+            <>
+              <Button
+                label="Precios"
+                onClick={() => navigate('/construccion')}
+                className="w-full"
+                icon="pi pi-dollar"
+                disabled={loading}
+                severity="info"
+              />
+              <Button
+                label="Locaciones"
+                onClick={() => navigate('/construccion')}
+                className="w-full"
+                icon="pi pi-map-marker"
+                disabled={loading}
+                severity="info"
+              />
+              <Button
+                label="Consultar Estado"
+                onClick={() => navigate('/construccion')}
+                className="w-full"
+                icon="pi pi-search"
+                disabled={loading}
+                severity="info"
+              />
+            </>
+          ) : (
+            // Botones para Web User
+            <>
+              <Button
+                label="Crear Presupuesto"
+                onClick={() => navigate('/construccion')}
+                className="w-full"
+                icon="pi pi-plus"
+                disabled={loading}
+                severity="info"
+              />
+              <Button
+                label="Mis Tareas"
+                onClick={() => navigate('/platform/tareas')}
+                className="w-full"
+                icon="pi pi-list"
+                disabled={loading}
+                severity="info"
+              />
+            </>
+          )}
+          
           <Button
             label="Cerrar sesión"
             onClick={handleLogout}
